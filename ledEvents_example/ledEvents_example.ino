@@ -28,7 +28,7 @@ autoDelay basicDelay;                 // Set up instance of autoDelay
 
 void setup() {
 
-ledONE.begin(ledPin, initialState);    // Begin library by passing the pin of an LED & the initialState
+ledONE.begin(ledPin, initialState);    // Begin ledObject library by passing the pin of an LED & the initialState
 
 //ledONE.begin();                            // Begins library with default values (pin 13, initialState OFF)
 
