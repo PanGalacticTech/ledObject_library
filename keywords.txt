@@ -1,0 +1,10 @@
+ledObject		KEYWORD1
+
+begin		KEYWORD2
+turnOn		KEYWORD2
+turnOff		KEYWORD2
+startBlink	KEYWORD2
+stopBlink		KEYWORD2
+callBlink		KEYWORD2
+performBlink	KEYWORD2
+ledState		KEYWORD2
