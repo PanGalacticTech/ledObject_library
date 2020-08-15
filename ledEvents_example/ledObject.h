@@ -26,7 +26,7 @@
 
 
 
-
+#define blinkEvent callBlink     // Set up Synonyms for common functions
 
 
 
