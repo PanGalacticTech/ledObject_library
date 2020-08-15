@@ -7,5 +7,6 @@ toggleLED	KEYWORD2
 startBlink	KEYWORD2
 stopBlink		KEYWORD2
 callBlink		KEYWORD2
+blinkEvent	KEYWORD2
 performBlink	KEYWORD2
 ledState		KEYWORD2
