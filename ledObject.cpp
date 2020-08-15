@@ -121,7 +121,8 @@ void ledObject::performBlink() {     // This function is called once per loop an
 
         ledObject::turnOff();                                    // Turn the LED off
         lastAction = currentAction;                                // save the time at which the LED was turned off
-
+       
+	   
         if (blinkQuantity > 0) {                                                  // checks if blinkQuantity is greater than zero > set by blink Event
           blinkQuantity--;                                                // a blink has been done so decrement the number of blinks left to actuate
           if (blinkQuantity == 0) {                                                // if a blink even has been called but has now been expended
@@ -133,7 +134,8 @@ void ledObject::performBlink() {     // This function is called once per loop an
       if (currentAction - lastAction >= blinkOffDuration) {                       // if the LED has been switched off for greater than or equal to the blink off duration
         ledObject::turnOn();                                                      // turn the LED on
         lastAction = currentAction;                                // save the time at which the LED was turned on.
-        // Do not decrement as the last action needs to be the LED turning off
+        // Do not decrement as the last action needs to be the LED turning off -- EDIT: Add function to count decrements
+		//Based on the initial LEDstate?
       }
     }
   }
