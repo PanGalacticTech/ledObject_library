@@ -2,8 +2,8 @@
 
      Library to control a single LED
 
-     Can be used to make simple animiations for basic UIs
-     Utelising single LEDs
+     Can be used to make simple animations for basic UIs
+     Using single LEDs
 
      Created by Declan Heard. 01/08/2020
      Released into Public Domain.
@@ -59,8 +59,19 @@ void ledObject::turnOff() {
 }
 
 
+void ledObject::toggleLED() {
+	if (ledState){
+  digitalWrite(ledPin, LOW);
+   ledState = LOW;
+	} else {
+	digitalWrite(ledPin, HIGH);
+  ledState = HIGH;
+ }
+}
 
-void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a constant blinking that continues untill stopBlink is called
+
+
+void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a constant blinking that continues until stopBlink is called
   blinkActive = true;
   blinkOnDuration = onDuration;
   blinkOffDuration = offDuration;
@@ -70,7 +81,7 @@ void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a co
 void ledObject::stopBlink() {                                                 // Stops the blinking, including if callBlink has been set
   blinkActive = false;
   ledObject::turnOff();                                                            //pulls LED low to stop the blinking
-  blinkQuantity = 0;                                                              // Resets to zero, unnessissary but ties up loose ends
+  blinkQuantity = 0;                                                              // Resets to zero, unnecessary but ties up loose ends
 }
 
 
@@ -86,7 +97,7 @@ void ledObject::stopBlink() {                                                 //
 void ledObject::callBlink(int numberofBlinks, long onDuration, long offDuration) {                    // When called this function sets up a blink event, which is performed by the performBlink fuction which is called once per loop
 
   blinkQuantity = numberofBlinks;                                                                          // This may be verbose for what it is, but it allows the user to call ledObject.callBlink(number, duration, duration); and have this executed later.
-  blinkOnDuration = onDuration;                                                                             // alternativily this would need to be a structure, otherwise the user would have to set all 3 variables independently to call the blink event
+  blinkOnDuration = onDuration;                                                                             // alternatively this would need to be a structure, otherwise the user would have to set all 3 variables independently to call the blink event
   blinkOffDuration = offDuration;
 
   blinkActive = true;

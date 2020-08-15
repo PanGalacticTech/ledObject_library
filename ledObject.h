@@ -2,8 +2,8 @@
 
      Library to control a single LED
 
-     Can be used to make simple animiations for basic UIs
-     Utelising single LEDs
+     Can be used to make simple animations for basic UIs
+     Using single LEDs
 
      Created by Declan Heard. 01/08/2020
      Released into Public Domain.
@@ -45,6 +45,8 @@ class ledObject
     void turnOn();
 
     void turnOff();
+	
+	void toggleLED();
 
     void startBlink(long onDuration = 40, long offDuration = 130);                                 // default values allow startBlink() with no arguments. // performBlink must be called in main loop to actuate
 
