@@ -14,7 +14,7 @@ ledState		KEYWORD2
 fadeLED			KEYWORD1
 
 
-setup			KEYWORD2
+
 updatePWM		KEYWORD2
 updateOutput 	KEYWORD2
 updateLED		KEYWORD2
