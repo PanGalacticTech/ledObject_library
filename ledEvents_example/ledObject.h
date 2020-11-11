@@ -35,12 +35,14 @@ class ledObject
   public:
 
     // constructor
-    ledObject();
+    ledObject(int led_pin);
 
 
     //Basic Methods
 
-    void begin(int ledPin = 13, int initialState = 0);
+    //    void begin(int ledPin = 13, int initialState = 0);
+
+    void begin(int initialState = 0);
 
     void turnOn();
 
@@ -66,6 +68,7 @@ class ledObject
     bool blinkActive;     // remains true while blink Event functions are active (and need to be repeated)
 
     int ledPin;
+
 
   private:
 
@@ -115,7 +118,8 @@ class fadeLED: public ledObject {
   public:
 
     //Constructor
-    fadeLED(): ledObject()    // Not 100% sure this is correct syntax, we will see
+    fadeLED(int pwm_Pin): ledObject(pwm_Pin),    // Not 100% sure this is correct syntax, we will see
+      pwmPin(pwm_Pin)                           // Passed pwm_Pin during constructor now.
     {
     }
 
@@ -123,7 +127,9 @@ class fadeLED: public ledObject {
     // No begin method as it already exists in ledObject, and the new function
     // doesnt change anything. not true: this does need a begin I think:
 
-    void setup(int ledPin = 9, byte startBrightness = 150);    // Set up called once during setup
+    //   void setup(int ledPin = 9, byte startBrightness = 150);    // Set up called once during setup
+
+    void setup(byte startBrightness = 150);     // New setup
 
 
 

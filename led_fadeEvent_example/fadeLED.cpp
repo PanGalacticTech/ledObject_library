@@ -26,18 +26,26 @@
 // No begin method as it already exists in ledObject, and the new function
 // doesnt change anything.(HAHAHA)
 
-void fadeLED::setup(int pin, byte startBrightness) {
+/*
+  void fadeLED::setup(int pin, byte startBrightness) {
 
   pwmPin = pin;                                 // Set up PWM pin (default 9 - for now)
   ledPin = pin;                                // required to interface with ledObject library.
-  
+
   pinMode(pwmPin, OUTPUT);                          // Set PWM pin to output
   fadeLED::updatePWM(startBrightness);                       // update output with current brightness
 
+  }
+*/
 
+void fadeLED::setup(byte startBrightness) {
+
+  ledObject::ledPin = pwmPin;                                // required to interface with ledObject library.
+
+  pinMode(pwmPin, OUTPUT);                          // Set PWM pin to output
+  fadeLED::updatePWM(startBrightness);                       // update output with current brightness
 
 }
-
 
 
 
@@ -45,7 +53,7 @@ void fadeLED::setup(int pin, byte startBrightness) {
 // Method to write ledBrightness to PWM pin
 
 
-void fadeLED::updatePWM(byte brightness) {      
+void fadeLED::updatePWM(byte brightness) {
 
 
   analogWrite(pwmPin, brightness);
@@ -86,9 +94,9 @@ void fadeLED::fadeEvent(byte minimum, byte maximum, int repeats, uint32_t timeMs
 
   interval = fadeLED::calculateFade(minimum, maximum, timeMs);
 
-  pulsesRemaining = repeats*2;    // Double the number of pulses as the algorithm subtracks 2 for every phase.
+  pulsesRemaining = repeats * 2;  // Double the number of pulses as the algorithm subtracks 2 for every phase.
 
-    if (fadeState == OFF) {             // starts fading if fading is turned off.
+  if (fadeState == OFF) {             // starts fading if fading is turned off.
     fadeState = FADE_UP;
   }
 
@@ -139,22 +147,22 @@ void fadeLED::fadeOut(byte endBrightness, uint32_t timeMs) {
 
   interval = fadeLED::calculateFade(ledBrightness, endBrightness, timeMs);
 
-  
 
-  if (ledBrightness > endBrightness){
-        fadeState = FADE_DOWN;
-        minBrightness = endBrightness;
-  } else if(ledBrightness < endBrightness){
-      fadeState = FADE_UP;
-      maxBrightness = endBrightness;
-  } else if (ledBrightness == endBrightness){
+
+  if (ledBrightness > endBrightness) {
+    fadeState = FADE_DOWN;
+    minBrightness = endBrightness;
+  } else if (ledBrightness < endBrightness) {
+    fadeState = FADE_UP;
+    maxBrightness = endBrightness;
+  } else if (ledBrightness == endBrightness) {
     fadeState = OFF;
   }
 
   pulsesRemaining = 1;
-  
-  
-  } // fades in or out using the current brightness as a starting positon
+
+
+} // fades in or out using the current brightness as a starting positon
 
 
 
@@ -164,12 +172,12 @@ void fadeLED::fadeOut(byte endBrightness, uint32_t timeMs) {
 
 
 // Final loop for performing all fadeLED events and moments
-void fadeLED::performFades() { 
+void fadeLED::performFades() {
 
 
   if (pulsesRemaining > 0 || fadeState != OFF) {
 
-     currentInterval = micros();
+    currentInterval = micros();
 
     if (currentInterval - lastInterval >= interval) {
       switch (fadeState) {
@@ -204,7 +212,7 @@ void fadeLED::performFades() {
     }
 
   } else {
-   
+
     ledObject::performBlink();
   }
 }

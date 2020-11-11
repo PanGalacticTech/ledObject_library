@@ -19,15 +19,14 @@
 #include "ledObject.h"
 
 
-ledObject::ledObject() {    // ANything needed to set up instance goes here
-
-
-
+ledObject::ledObject(int led_pin):    // ANything needed to set up instance goes here
+  ledPin(led_pin)
+{
 }
 
 
-
-void ledObject::begin(int pin, int initialState) {              // Sets up ledPin as output pin.
+/*
+  void ledObject::begin(int pin, int initialState) {              // Sets up ledPin as output pin.
 
   ledPin = pin;
   pinMode(ledPin, OUTPUT);
@@ -38,9 +37,21 @@ void ledObject::begin(int pin, int initialState) {              // Sets up ledPi
     ledObject::turnOff();
   }
 
+  }
+*/
+
+void ledObject::begin(int initialState) {              // Sets up ledPin as output pin.
+
+
+  pinMode(ledPin, OUTPUT);
+
+  if (initialState) {
+    ledObject::turnOn();
+  } else {
+    ledObject::turnOff();
+  }
+
 }
-
-
 
 
 
@@ -60,13 +71,13 @@ void ledObject::turnOff() {
 
 
 void ledObject::toggleLED() {
-	if (ledState){
-ledObject::turnOff();
-   ledState = LOW;
-	} else {
-	ledObject::turnOn(); 
-  ledState = HIGH;
- }
+  if (ledState) {
+    ledObject::turnOff();
+    ledState = LOW;
+  } else {
+    ledObject::turnOn();
+    ledState = HIGH;
+  }
 }
 
 
@@ -121,8 +132,8 @@ void ledObject::performBlink() {     // This function is called once per loop an
 
         ledObject::turnOff();                                    // Turn the LED off
         lastAction = currentAction;                                // save the time at which the LED was turned off
-       
-	   
+
+
         if (blinkQuantity > 0) {                                                  // checks if blinkQuantity is greater than zero > set by blink Event
           blinkQuantity--;                                                // a blink has been done so decrement the number of blinks left to actuate
           if (blinkQuantity == 0) {                                                // if a blink even has been called but has now been expended
@@ -135,7 +146,7 @@ void ledObject::performBlink() {     // This function is called once per loop an
         ledObject::turnOn();                                                      // turn the LED on
         lastAction = currentAction;                                // save the time at which the LED was turned on.
         // Do not decrement as the last action needs to be the LED turning off -- EDIT: Add function to count decrements
-		//Based on the initial LEDstate?
+        //Based on the initial LEDstate?
       }
     }
   }
