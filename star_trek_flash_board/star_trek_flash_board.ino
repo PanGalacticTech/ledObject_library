@@ -2,13 +2,12 @@
 
   Example showing how to use ledObject and fadeLED together.
 
-  This example uses almost as many LEDs as possible to replicate
-  the randomly flashing "led circuit boards" from star trek (as per request).
+  This example uses almost as many LEDs as possible to
+  replicate the randomly flashing "led circuit boards"
+  from star trek (as per request).
 
-  If yomore LEDs are required, you can use the analog pins as well,
+  If more LEDs are required, you can use the analog pins as well,
   if you still want more, run it on an arduino mega.
-
-
 
 
      Created by Declan Heard. 11/11/2020
