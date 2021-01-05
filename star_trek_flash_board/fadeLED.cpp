@@ -23,26 +23,18 @@
 
 
 //Methods
-// No begin method as it already exists in ledObject, and the new function
-// doesnt change anything.(HAHAHA)
 
-/*
-  void fadeLED::setup(int pin, byte startBrightness) {
 
-  pwmPin = pin;                                 // Set up PWM pin (default 9 - for now)
-  ledPin = pin;                                // required to interface with ledObject library.
-
-  pinMode(pwmPin, OUTPUT);                          // Set PWM pin to output
-  fadeLED::updatePWM(startBrightness);                       // update output with current brightness
-
-  }
-*/
 
 void fadeLED::setup(byte startBrightness) {
 
   ledObject::ledPin = pwmPin;                                // required to interface with ledObject library.
-
+#ifdef __AVR__
   pinMode(pwmPin, OUTPUT);                          // Set PWM pin to output
+#elif defined(ESP8266) || defined(ESP32)
+  ledcSetup(ledCH, frequency, resolution); ledcAttachPin(pwmPin, ledCH);
+#endif
+
   fadeLED::updatePWM(startBrightness);                       // update output with current brightness
 
 }
@@ -55,10 +47,13 @@ void fadeLED::setup(byte startBrightness) {
 
 void fadeLED::updatePWM(byte brightness) {
 
-
+#ifdef __AVR__
   analogWrite(pwmPin, brightness);
-  //Serial.println(brightness);
+#elif defined(ESP8266) || defined(ESP32)
+  ledcWrite(ledCH, brightness);
+#endif
 
+  //Serial.println(brightness);
 }
 
 

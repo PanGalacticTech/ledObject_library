@@ -112,16 +112,43 @@ class ledObject
 #define updateLED updatePWM          // Set up Synonyms for common functions
 #define updateOutput updatePWM
 
+// Precompiler define functions for ESP & AtMega implementations
+
+
+
+
+
 
 class fadeLED: public ledObject {
 
   public:
 
     //Constructor
+
+
+#ifdef __AVR__
     fadeLED(int pwm_Pin): ledObject(pwm_Pin),    // Not 100% sure this is correct syntax, we will see
-      pwmPin(pwm_Pin)                           // Passed pwm_Pin during constructor now.
+      pwmPin(pwm_Pin)                         // Passed pwm_Pin during constructor now.
     {
     }
+
+#elif defined(ESP8266) || defined(ESP32)
+    fadeLED(int pwm_Pin = 2, int led_ch = 0, int freq = 5000, int reso = 8): // Constructor defined by precompiler macro depending on microcontroller environment selected
+      ledObject(pwm_Pin),
+      pwmPin(pwm_Pin),
+      ledCH(led_ch),
+      frequency(freq),
+      resolution(reso)
+    {
+    }
+#else
+
+#error “Unsupported board selected!”
+#endif
+
+
+
+
 
     //Methods
     // No begin method as it already exists in ledObject, and the new function
@@ -202,7 +229,11 @@ class fadeLED: public ledObject {
     bool fadingActive;
 
 
+    // Constructor Variables
     int pwmPin;
+    int ledCH;
+    int frequency;
+    int resolution;
 
     uint32_t currentInterval = 0;
     uint32_t lastInterval = 0;   // This needs to be defined before it is used
