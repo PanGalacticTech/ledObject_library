@@ -57,18 +57,14 @@ fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);   // Constructor for ESP Board
 
 #define INITIAL_BRIGHTNESS 50     //defines a starting brightness for fadeLED object. byte value from 0 - 255 valid
 
-
-
-
-#define MIN_BRIGHT 10
-#define MAX_BRIGHT 200
-#define TIME_MS  500
+#define MIN_BRIGHT 50
+#define MAX_BRIGHT 255
+#define TIME_MS  400
 
 
 
 void setup() {
 
-  Serial.begin(115200);
 
   // Fading LED Examples
 
@@ -98,7 +94,7 @@ void setup() {
 
   //.fadeEvent(0, 250, 4, 300 );                 // sets up repeating fade event (min, max, number of cycles, timeMs)
 
-  button.begin();
+
 
 }
 
@@ -115,22 +111,7 @@ void loop() {
 
 
 
-  button.buttonLoop(750);   // long int passed controls the time required for a long press. (defaults to 1 second)
-
-
-
-  if (button.shortPress) {
-    Serial.println("Short Press");
-    led.blinkEvent(10, 100, 200);
-    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
-  }
-
-  if (button.longPress) {
-    Serial.println("Long Press");
-    led.fadeOut(255, 3000);                   // fade LED to black argument(fadeOut_time milliseconds);
-    button.buttonReset();     // .buttonReset method resets longPress & shortPress variables once action has been taken
-  }
-
+  
 
   // .stopFading();                             // any fade events must be stopped before blink events can be called.
   //  .blinkEvent(4, 200, 200);
