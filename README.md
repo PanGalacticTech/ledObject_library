@@ -180,7 +180,10 @@ ________________________________________________________________________________
 
 <br>
 
-### Known Issues V1.0
+### Known Issues V2.0.0
+  - Please report any bugs or issues found.
+  - 
+### Known Issues V1.0.0
   - Please report any bugs or issues found.
 
 <br>
