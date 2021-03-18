@@ -16,13 +16,13 @@
 3. Open Arduino IDE and select from example programs.
 
 
-
+<br>
 
 ## Use:
 
 ### Precompiler Requirements:
 
-`#include <ledObject.h>   // Libary include N.B. This includes both ledObject & fadeLED `
+`#include <ledObject.h>   // Libary include N.B.This includes both ledObject & fadeLED methods `
 
 
 #### AVR
@@ -39,7 +39,7 @@ For ESP32 & espressif boards, additional variables are required for setup:
 	`#define PWM_FREQ 5000                    // PWM Frequency (Hz)`
 	`#define PWM_RESO 8                       // PWM Resolution (bits)       ` 
 
-
+<br>
 ### Object Constructors
 
 #### AVR
@@ -56,18 +56,19 @@ Declaring a fade LED object:
 
 `fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);      // ESP32 Requires 4 arguments for constructor`
 
-
+<br>
 ### Setup Functions:
 
  (Coming Soon)
 
-
+<br>
 ### Loop Functions:
 
  (Coming Soon)
 
 
-
+<br>
+<br>
 
 ### Limitations:
 - Not tested on ATtiny controllers. 
@@ -77,10 +78,12 @@ Declaring a fade LED object:
 
 ### Known Issues V1.0
   - Please report any bugs or issues found.
-    
+
+<br>
 ### Features to be Added 
 
-
+<br>
+<br>
 ## About
 ### Built With
 * [Arduino IDE](https://www.arduino.cc/) - Default IDE
