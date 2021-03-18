@@ -90,10 +90,12 @@ ________________________________________________________________________________
   - Please report any bugs or issues found.
 
 <br>
+
 ### Features to be Added 
 
 <br>
 <br>
+
 ## About
 ### Built With
 * [Arduino IDE](https://www.arduino.cc/) - Default IDE
