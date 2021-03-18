@@ -2,19 +2,14 @@
 #### Built and maintained by [Declan Heard](mailto:pangalactictech@gmail.com "Email me!") on behalf of [Pan Galactic Tech](https://PanGalacticTech.com)
 
 ## Features
-* Object Orientated library for controling single LEDs
-* Seperate class defintions for "blink" (digital) and "fade" (PWM) LED outputs
-* fadeLED inherets all functions from ledObject (blink) LEDs
+* Object Orientated library for controling single LEDs.
+* Seperate class defintions for "blink" (digital) and "fade" (PWM) LED outputs.
+* fadeLED inherets all functions from ledObject (blink) LEDs.
 * Add values to a counter which will count down a specific number of ledEvents before ending.
-* Or Set up blinks and fades that continue untill stop is called.
-
+* Set up blinks and fades that continue until stop method is called.
+* Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Boards.
 
 ## Getting Started
-
-	*Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Boards
-
-
-
 ### Deployment
 1. Clone or Download library folder into Arduino IDE libraries folder.
 2. Extract files from zipped folder if required.
