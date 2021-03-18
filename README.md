@@ -82,10 +82,10 @@ ________________________________________________________________________________
 Call performBlink() or PerformFade(); on LED objects to set the output pins.
 This method should be called in main loop for each ledObject or fadeLED object. 
 
-For blink objects
+For blink objects <br>
 `led.performBlink();`<br> <br>
 
-For fade objects
+For fade objects <br>
 `led.performFade();`<br> <br>
 
 Note: performBlink(); and performFade(); are both valid for fadeLED objects, performFade will also
