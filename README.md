@@ -6,9 +6,10 @@
 * Seperate class defintions for "blink" (digital) and "fade" (PWM) LED outputs.
 * Set up LED blink & fade behaviour without dealing with any delay() functions and the problems this causes.
 * fadeLED inherets all functions from ledObject (blink) LEDs.
-* Add values to a counter which will count down a specific number of ledEvents before ending.
+* Call blink or fade events which count down a specific number of ledEvents before ending.
 * Set up blinks and fades that continue until stop method is called.
 * Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Microcontrollers.
+* Call as many constructors as needed, each one controls a single LED, but many can be stacked and accessed as object arrays.
 
 ___________________________________________________________________________________________________________
 
