@@ -29,16 +29,16 @@ ________________________________________________________________________________
 #### <u>AVR</u>
 Define the LED pin and the initial state.
 
-	`#define ledPin 9                         // Define LED pin. If undefined - defaults to pin 13.`
-	`#define initialState 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
+`#define ledPin 9                         // Define LED pin. If undefined - defaults to pin 13.`
+`#define initialState 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
 
 #### <u>ESP32 / espressif</u>
 For ESP32 & espressif boards, additional variables are required for setup.
 
-	`#define PWM_PIN 2                       // PWM drive capable pin`
-	`#define LED_CH  0                        // PWM Channel (ESP32 up to 16 channels total)`
-	`#define PWM_FREQ 5000                    // PWM Frequency (Hz)`
-	`#define PWM_RESO 8                       // PWM Resolution (bits)       ` 
+`#define PWM_PIN 2                       // PWM drive capable pin`
+`#define LED_CH  0                        // PWM Channel (ESP32 up to 16 channels total)`
+`#define PWM_FREQ 5000                    // PWM Frequency (Hz)`
+`#define PWM_RESO 8                       // PWM Resolution (bits)       ` 
 
 <br>
 ___________________________________________________________________________________________________________
