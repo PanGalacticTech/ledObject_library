@@ -25,14 +25,14 @@ ________________________________________________________________________________
 
 ### Precompiler Requirements:
 
-`#include <ledObject.h>   // Libary include N.B.This includes both ledObject & fadeLED methods `
+`#include <ledObject.h>   // Libary include N.B.This includes both ledObject & fadeLED methods ` <br>
 
 
 #### <u>AVR</u>
 Define the LED pin and the initial state.
 
 `#define LED_PIN 9                         // Define LED pin. If undefined - defaults to pin 13.` <br>
-`#define INITIAL_STATE 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
+`#define INITIAL_STATE 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF` <br> <br>
 
 #### <u>ESP32 / espressif</u>
 For ESP32 & espressif boards, additional variables are required for setup.
@@ -40,7 +40,7 @@ For ESP32 & espressif boards, additional variables are required for setup.
 `#define PWM_PIN 2                       // PWM drive capable pin`   <br>
 `#define LED_CH  0                        // PWM Channel (ESP32 up to 16 channels total)`  <br>
 `#define PWM_FREQ 5000                    // PWM Frequency (Hz)`    <br>
-`#define PWM_RESO 8                       // PWM Resolution (bits)`   <br>
+`#define PWM_RESO 8                       // PWM Resolution (bits)`   <br> <br>
 
 ___________________________________________________________________________________________________________
 
@@ -49,16 +49,16 @@ ________________________________________________________________________________
 #### <u>AVR</u>
 Declaring a blink LED object:
 
-`ledObject led(LED_PIN) `<br>
+`ledObject led(LED_PIN) `<br> <br>
 
 Declaring a fade LED object:
 
-`fadeLED led(LED_PIN);      		// Note: LED_PIN must be PWM capable pin`<br>
+`fadeLED led(LED_PIN);      		// Note: LED_PIN must be PWM capable pin`<br> <br>
 
 #### <u>ESP32 / espressif</u>
 Declaring a fade LED object:
 
-`fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);      // ESP32 Requires 4 arguments for constructor`<br>
+`fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);      // ESP32 Requires 4 arguments for constructor`<br> <br>
 
 <br>
 
@@ -67,11 +67,11 @@ ________________________________________________________________________________
 ### Setup Functions:
 Setup function for Blink LEDs pass the initial state as an argument. Defaults to off.
 
-`led.begin(INITIAL_STATE);`<br>
+`led.begin(INITIAL_STATE);`<br> <br>
 
 Setup function for Fade LEDs pass the initial brightness as an argument. Default is 150
 
-`led.begin(INITIAL_BRIGHTNESS);`<br>
+`led.begin(INITIAL_BRIGHTNESS);`<br> <br>
 
 <br>
 
@@ -84,7 +84,7 @@ This method should be called in main loop for each ledObject or fadeLED object.
 
 `led.performBlink();`<br>
 
-`led.performFade();`<br>
+`led.performFade();`<br> <br>
 
 Note: performBlink(); and performFade(); are both valid for fadeLED objects, performFade will also
 carry out any Blink events triggered. Fading events take priority over Blink events if they are called together.
@@ -103,20 +103,20 @@ Blink & Fade events must be triggered to be performed.
 
 Start a Blink event that continues indefinatly:
 
-`led.startBlink(onDuration, offDuration);`<br>
+`led.startBlink(onDuration, offDuration);`<br> <br>
 
 Call a Blink event that repeats a number of times:
 
-`led.blinkEvent(numberofBlinks, onDuration, offDuration );`<br>
+`led.blinkEvent(numberofBlinks, onDuration, offDuration );`<br> <br>
 
 
 Start a Fade event that continues indefinatly:
 
-`led.startFading(minBrightness, maxBrightness , timeMs);  // timeMs is time for complete fade (Up & Down)`<br>
+`led.startFading(minBrightness, maxBrightness , timeMs);  // timeMs is time for complete fade (Up & Down)`<br> <br>
 
 Call a Fade event that repeats a number of times:
 
-`led.fadeEvent(minimum , maximum, repeats, timeMs = 500);`<br>
+`led.fadeEvent(minimum , maximum, repeats, timeMs = 500);`<br> <br>
 
 <br>
 _____
@@ -125,11 +125,11 @@ _____
 
 To stop a blink event call:
 
-`led.stopBlink();`<br>
+`led.stopBlink();`<br> <br>
 
 To stop a fade event call:
 
-`led.stopFading();`<br>
+`led.stopFading();`<br> <br>
 
 
 ___________________________________________________________________________________________________________
@@ -143,25 +143,25 @@ Set up arrays of ledObject and fadeLED constructors to iterate through large num
 `                                      // Set up an array of ledObjects, each ledObject is passed an output pin`<br>
 
 `fadeLED fade[6] = {fadeLED(3), fadeLED(5), fadeLED(6), fadeLED(9), fadeLED(10), fadeLED(11)};`<br>
-`                                      // Set up an array of fadeLEDs. Each LED is passed a PWM capable output pin`<br>
+`                                      // Set up an array of fadeLEDs. Each LED is passed a PWM capable output pin`<br> <br>
 
 Iterate through object array using a for loop for setup functions.
 
 `for (int i = 0; i < NUM_FLASHERS; i++) {`<br>
 `    flash[i].begin(INITIAL_STATE);`<br>
-` }`<br>
+` }`<br> <br>
 
 Iterate through object array using a for loop to start or change flashing/fading behaviour.
 
 `for (int i = 0; i < NUM_FADERS; i++) {`<br>
 `    fade[i].startFading(0, 255, random(1, 1000));                    // feed new random numbers into the fade objects`<br>
-`  }`<br>
+`  }`<br> <br>
 
 Iterate through object array with perform function (Must be called in every loop).
 
 `for (int i = 0; i < NUM_FADERS; i++) {`<br>
 `   fade[i].performFades();        // PerformFade events, also performs blink events.`<br>
-` }`
+` }` <br> <br>
 
 
 
