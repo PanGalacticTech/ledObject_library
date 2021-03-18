@@ -9,6 +9,8 @@
 * Set up blinks and fades that continue until stop method is called.
 * Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Microcontrollers.
 
+___________________________________________________________________________________________________________
+
 ## Getting Started
 ### Deployment
 1. Clone or Download library folder into Arduino IDE libraries folder.
@@ -17,6 +19,7 @@
 
 
 <br>
+___________________________________________________________________________________________________________
 
 ## Use:
 
@@ -26,13 +29,13 @@
 
 
 #### <u>AVR</u>
-Define the LED pin and the initial state:
+Define the LED pin and the initial state.
 
 	`#define ledPin 9                         // Define LED pin. If undefined - defaults to pin 13.`
 	`#define initialState 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
 
 #### <u>ESP32 / espressif</u>
-For ESP32 & espressif boards, additional variables are required for setup:
+For ESP32 & espressif boards, additional variables are required for setup.
 
 	`#define PWM_PIN 2                       // PWM drive capable pin`
 	`#define LED_CH  0                        // PWM Channel (ESP32 up to 16 channels total)`
@@ -40,6 +43,8 @@ For ESP32 & espressif boards, additional variables are required for setup:
 	`#define PWM_RESO 8                       // PWM Resolution (bits)       ` 
 
 <br>
+___________________________________________________________________________________________________________
+
 ### Object Constructors
 
 #### <u>AVR</u>
@@ -57,11 +62,17 @@ Declaring a fade LED object:
 `fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);      // ESP32 Requires 4 arguments for constructor`
 
 <br>
+
+___________________________________________________________________________________________________________
+
 ### Setup Functions:
 
  (Coming Soon)
 
 <br>
+
+___________________________________________________________________________________________________________
+
 ### Loop Functions:
 
  (Coming Soon)
@@ -69,6 +80,7 @@ Declaring a fade LED object:
 
 <br>
 <br>
+___________________________________________________________________________________________________________
 
 ### Limitations:
 - Not tested on ATtiny controllers. 
