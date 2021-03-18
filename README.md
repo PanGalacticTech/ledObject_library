@@ -4,6 +4,7 @@
 ## Features
 * Object Orientated library for controling single LEDs.
 * Seperate class defintions for "blink" (digital) and "fade" (PWM) LED outputs.
+* Set up LED blink & fade behaviour without dealing with any delay() functions and the problems this causes.
 * fadeLED inherets all functions from ledObject (blink) LEDs.
 * Add values to a counter which will count down a specific number of ledEvents before ending.
 * Set up blinks and fades that continue until stop method is called.
@@ -29,8 +30,8 @@ ________________________________________________________________________________
 #### <u>AVR</u>
 Define the LED pin and the initial state.
 
-`#define ledPin 9                         // Define LED pin. If undefined - defaults to pin 13.` <br>
-`#define initialState 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
+`#define LED_PIN 9                         // Define LED pin. If undefined - defaults to pin 13.` <br>
+`#define INITIAL_STATE 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
 
 #### <u>ESP32 / espressif</u>
 For ESP32 & espressif boards, additional variables are required for setup.
@@ -51,7 +52,7 @@ Declaring a blink LED object:
 
 Declaring a fade LED object:
 
-`fadeLED led(LED_PIN);      		// LED pin passed as argument to constructor `
+`fadeLED led(LED_PIN);      		// Note: LED_PIN must be PWM capable pin`
 
 #### <u>ESP32 / espressif</u>
 Declaring a fade LED object:
@@ -63,8 +64,13 @@ Declaring a fade LED object:
 ___________________________________________________________________________________________________________
 
 ### Setup Functions:
+Setup function for Blink LEDs pass the initial state as an argument. Defaults to off.
 
- (Coming Soon)
+`led.begin(INITIAL_STATE);`
+
+Setup function for Fade LEDs pass the initial brightness as an argument. Default is 150
+
+`led.begin(INITIAL_BRIGHTNESS);`
 
 <br>
 
@@ -72,15 +78,101 @@ ________________________________________________________________________________
 
 ### Loop Functions:
 
- (Coming Soon)
+Call performBlink() or PerformFade(); on LED objects to set the output pins.
+This method should be called in main loop for each ledObject or fadeLED object. 
+
+`led.performBlink();`
+
+`led.performFade();`
+
+Note: performBlink(); and performFade(); are both valid for fadeLED objects, performFade will also
+carry out any Blink events triggered. Fading events take priority over Blink events if they are called together.
+
+performFade(); is not valid for ledObjects. 
+
+<br>
+
+
+___________________________________________________________________________________________________________
+
+### Starting & Stopping Events:
+#### Starting Events
+
+Blink & Fade events must be triggered to be performed.
+
+Start a Blink event that continues indefinatly:
+
+`led.startBlink(onDuration, offDuration);`
+
+Call a Blink event that repeats a number of times:
+
+`led.blinkEvent(numberofBlinks, onDuration, offDuration );`
+
+
+Start a Fade event that continues indefinatly:
+
+`led.startFading(minBrightness, maxBrightness , timeMs);  // timeMs is time for complete fade (Up & Down)`
+
+Call a Fade event that repeats a number of times:
+
+`led.fadeEvent(minimum , maximum, repeats, timeMs = 500);`
+
+<br>
+_____
+
+#### Stopping Events
+
+To stop a blink event call:
+
+`led.stopBlink();`
+
+To stop a fade event call:
+
+`led.stopFading();`
+
+
+___________________________________________________________________________________________________________
+
+### Advanced Uses:
+See [star_trek_flash_board](https://github.com/PanGalacticTech/ledObject_library/blob/master/star_trek_flash_board/star_trek_flash_board.ino) to see these techniques in action.
+
+Set up arrays of ledObject and fadeLED constructors to iterate through large numbers of outputs easily. 
+
+`ledObject flash[6] = {ledObject(2), ledObject(4), ledObject(7), ledObject(8), ledObject(12), ledObject(13)};`   
+`                                      // Set up an array of ledObjects, each ledObject is passed an output pin`
+
+`fadeLED fade[6] = {fadeLED(3), fadeLED(5), fadeLED(6), fadeLED(9), fadeLED(10), fadeLED(11)};`
+`                                      // Set up an array of fadeLEDs. Each LED is passed a PWM capable output pin`
+
+Iterate through object array using a for loop for setup functions.
+
+`for (int i = 0; i < NUM_FLASHERS; i++) {`
+`    flash[i].begin(INITIAL_STATE);`
+` }`
+
+Iterate through object array using a for loop to start or change flashing/fading behaviour.
+
+`for (int i = 0; i < NUM_FADERS; i++) {`
+`    fade[i].startFading(0, 255, random(1, 1000));                    // feed new random numbers into the fade objects`
+`  }`
+
+Iterate through object array with perform function (Must be called in every loop).
+
+`for (int i = 0; i < NUM_FADERS; i++) {`
+`   fade[i].performFades();        // PerformFade events, also performs blink events.`
+` }`
+
+
 
 
 <br>
 <br>
+
+___________________________________________________________________________________________________________
 ___________________________________________________________________________________________________________
 
 ### Limitations:
-- Not tested on ATtiny controllers. 
+- 
 
 
 <br>
