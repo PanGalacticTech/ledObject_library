@@ -7,7 +7,7 @@
 * fadeLED inherets all functions from ledObject (blink) LEDs.
 * Add values to a counter which will count down a specific number of ledEvents before ending.
 * Set up blinks and fades that continue until stop method is called.
-* Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Boards.
+* Functions work with both AVR (ATmega) / Arduino Boards & ESP32/8266 Espressif Microcontrollers.
 
 ## Getting Started
 ### Deployment
