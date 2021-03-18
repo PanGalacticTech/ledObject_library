@@ -25,13 +25,13 @@
 `#include <ledObject.h>   // Libary include N.B. This includes both ledObject & fadeLED `
 
 
-####AVR
+###AVR
 Define the LED pin and the initial state:
 
 `#define ledPin 9                         // Define LED pin. If undefined - defaults to pin 13.
 #define initialState 1                  // Defines if LED pin starts with initial state ON or OFF - defaults to OFF`
 
-####ESP32 / espressif
+###ESP32 / espressif
 For ESP32 & espressif boards, additional variables are required for setup:
 
 `#define PWM_PIN 2                       // PWM drive capable pin
@@ -42,7 +42,7 @@ For ESP32 & espressif boards, additional variables are required for setup:
 
 ### Object Constructors:
 
-####AVR
+###AVR
 Declaring a blink LED object:
 
 `ledObject led(LED_PIN) `
@@ -51,7 +51,7 @@ Declaring a fade LED object:
 
 `fadeLED led(LED_PIN);      		// LED pin passed as argument to constructor `
 
-#####ESP32 / espressif
+####ESP32 / espressif
 Declaring a fade LED object:
 
 `fadeLED led(PWM_PIN, LED_CH, PWM_FREQ, PWM_RESO);      // ESP32 Requires 4 arguments for constructor`
