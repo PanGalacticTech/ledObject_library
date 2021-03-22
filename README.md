@@ -19,6 +19,9 @@ ________________________________________________________________________________
 2. Extract files from zipped folder if required.
 3. Open Arduino IDE and select from example programs.
 
+### Dependencies
+No dependency for library function, however examples have the following dependencies:
+* autoDelay_library available from [here](https://github.com/PanGalacticTech/autoDelay_Library) - written by PanGalacticTech
 ___________________________________________________________________________________________________________
 
 ## Use:
