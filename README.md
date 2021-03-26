@@ -28,7 +28,7 @@ ________________________________________________________________________________
 
 ### Precompiler Requirements:
 
-`#include <ledObject.h>   // Libary include N.B.This includes both ledObject & fadeLED methods ` <br> <br>
+`#include <ledObject.h>   // Libary include N.B.This includes both ledObject & fadeLED classes ` <br> <br>
 
 
 #### <u>AVR</u>
