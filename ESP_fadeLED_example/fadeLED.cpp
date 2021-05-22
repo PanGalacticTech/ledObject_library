@@ -77,6 +77,7 @@ void fadeLED::hardON(){
 
 	ledBrightness = 255;
 	fadeLED::updatePWM(ledBrightness);
+	ledState = HIGH;
 	
 }
 
@@ -85,6 +86,7 @@ void fadeLED::hardOFF(){
 
 	ledBrightness = 0;
 	fadeLED::updatePWM(ledBrightness);
+	ledState = LOW;
 	
 }
 
@@ -92,11 +94,13 @@ void fadeLED::hardOFF(){
 void fadeLED::hardToggle(){	
 
 	if (fadeState == FADE_UP or fadeState == FADE_DOWN){
-		fadeLED::hardOFF();
 		fadeState = OFF;
+	}
+
+	if (ledState == HIGH){
+	fadeLED::hardOFF();		
 	} else {
-		fadeLED::hardON();
-		fadeState = OFF;
+	fadeLED::hardON();		
 	}
 }
 
