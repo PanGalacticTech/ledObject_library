@@ -71,9 +71,34 @@ void fadeLED::modifyPWM(int16_t amount) {
 }
 
 
+// Function to get around using ledON and ledOFF on ESP32 when using a pin previously used for PWM outputs for digital on and off
+
+void fadeLED::hardON(){	
+
+	ledBrightness = 255;
+	fadeLED::updatePWM(ledBrightness);
+	
+}
 
 
+void fadeLED::hardOFF(){	
 
+	ledBrightness = 0;
+	fadeLED::updatePWM(ledBrightness);
+	
+}
+
+
+void fadeLED::hardToggle(){	
+
+	if (fadeState == FADE_UP or fadeState == FADE_DOWN){
+		fadeLED::hardOFF();
+		fadeState = OFF;
+	} else {
+		fadeLED::hardON();
+		fadeState = OFF;
+	}
+}
 
 
 

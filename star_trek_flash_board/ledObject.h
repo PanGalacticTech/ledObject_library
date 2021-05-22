@@ -159,13 +159,21 @@ class fadeLED: public ledObject {
     void setup(byte startBrightness = 150);     // New setup
 
 
+    // Methods to control LEDs direction. i.e. without using loop functions
 
     void updatePWM(byte brightness);                // simple method to update the PWM output directly from a byte input. Can be called without using perform function
 
 
     void modifyPWM(int16_t amount = 1);                   // Simple method to add or remove a value from the current LED brightnes. can be called without using perform function
 
+    void hardON();
 
+    void hardOFF();
+
+    void hardToggle();
+
+
+    // Methods to control LEDS using loop functions
 
     // Void fade moment and fade event should be able to stop startFading without explicilty calling stopFading
 
