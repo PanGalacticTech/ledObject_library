@@ -160,7 +160,10 @@ class fadeLED: public ledObject {
 
 
 
-    void updatePWM(byte brightness);                // simple method to update the PWM output directly from a byte input
+    void updatePWM(byte brightness);                // simple method to update the PWM output directly from a byte input. Can be called without using perform function
+
+
+    void modifyPWM(int16_t amount = 1);                   // Simple method to add or remove a value from the current LED brightnes. can be called without using perform function
 
 
 

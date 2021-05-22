@@ -57,6 +57,23 @@ void fadeLED::updatePWM(byte brightness) {
 }
 
 
+// Method to write ledBrightness to PWM pin by specifying a value to add or subtract from the current brightness
+
+void fadeLED::modifyPWM(int16_t amount) {
+
+  ledBrightness = ledBrightness + amount;
+
+  ledBrightness = constrain(ledBrightness, 0 , 255);
+
+  fadeLED::updatePWM(ledBrightness);
+
+
+}
+
+
+
+
+
 
 
 
