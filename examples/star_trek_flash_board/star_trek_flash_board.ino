@@ -10,7 +10,7 @@
   if you still want more, run it on an arduino mega.
 
 
-     Created by Declan Heard. 11/11/2020
+     Created by Imogen Heard. 11/11/2020
      Released into Public Domain.
 
 */
