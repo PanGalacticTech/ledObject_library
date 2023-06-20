@@ -5,7 +5,7 @@
      Can be used to make simple animations for basic UIs
      Using single LEDs
 
-     Created by Declan Heard. 01/08/2020
+     Created by Imogen Wren. 01/08/2020
      Released into Public Domain.
 
 */
@@ -126,8 +126,16 @@ class fadeLED: public ledObject {
     //Constructor
 
 
-#ifdef __AVR__
+#ifdef __AVR__ 
+#pragma message("Compiled for AVR")
     fadeLED(int pwm_Pin): ledObject(pwm_Pin),    // Not 100% sure this is correct syntax, we will see
+      pwmPin(pwm_Pin)                         // Passed pwm_Pin during constructor now.
+    {
+    }
+
+#elif defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_SAM)
+#pragma message("Compiled for SAM/SAMD")
+	fadeLED(int pwm_Pin): ledObject(pwm_Pin),    // Not 100% sure this is correct syntax, we will see
       pwmPin(pwm_Pin)                         // Passed pwm_Pin during constructor now.
     {
     }
@@ -142,7 +150,6 @@ class fadeLED: public ledObject {
     {
     }
 #else
-
 #error “Unsupported board selected!”
 #endif
 

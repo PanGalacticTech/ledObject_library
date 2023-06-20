@@ -33,6 +33,8 @@ void fadeLED::setup(byte startBrightness) {
   pinMode(pwmPin, OUTPUT);                          // Set PWM pin to output
 #elif defined(ESP8266) || defined(ESP32)
   ledcSetup(ledCH, frequency, resolution); ledcAttachPin(pwmPin, ledCH);
+#else
+  pinMode(pwmPin, OUTPUT);                          // Selse try this again!
 #endif
 
   fadeLED::updatePWM(startBrightness);                       // update output with current brightness
@@ -51,6 +53,8 @@ void fadeLED::updatePWM(byte brightness) {
   analogWrite(pwmPin, brightness);
 #elif defined(ESP8266) || defined(ESP32)
   ledcWrite(ledCH, brightness);
+#else
+  analogWrite(pwmPin, brightness);
 #endif
 
   //Serial.println(brightness);

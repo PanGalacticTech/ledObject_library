@@ -5,7 +5,7 @@
      Can be used to make simple animations for basic UIs
      Using single LEDs
 
-     Created by Declan Heard. 01/08/2020
+     Created by Imogen Wren. 01/08/2020
      Released into Public Domain.
 
 */
