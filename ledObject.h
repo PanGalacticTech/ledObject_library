@@ -150,7 +150,7 @@ class fadeLED: public ledObject {
     {
     }
 #else
-#error “Unsupported board selected!”
+#error "Unsupported board selected!"
 #endif
 
 
