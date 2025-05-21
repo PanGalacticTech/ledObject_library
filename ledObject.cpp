@@ -66,6 +66,7 @@ void ledObject::turnOn() {
 
 void ledObject::turnOff() {
   digitalWrite(ledPin, LOW);
+  blinkActive = false;    // modified IWH 21/05/2025
   ledState = LOW;
 }
 
