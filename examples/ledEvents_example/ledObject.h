@@ -64,10 +64,19 @@ class ledObject
     void performBlink();                                                                      // Must be Called in the main loop if using blink functions. performs the actions of callBlink and StartBlink
 
     // variables
+	typedef enum {  	
+		STOPPED,
+		STARTING,
+		RUNNING,
+		STOPPING
+		} blinkState;
+
     bool ledState = LOW;      // stores the state of the LED
 
-
+	blinkState currentBlinkState = STOPPED;
+	
     bool blinkActive;     // remains true while blink Event functions are active (and need to be repeated)
+	bool lastBlinkActiveState;   // save the last state blink was in for making sure end of blink state doesnt repeat
 
     int ledPin;
 
@@ -154,7 +163,12 @@ class fadeLED: public ledObject {
     {
     }
 #else
-#error "Unsupported board selected!"
+#pragma message("Unknown board selected!")
+    fadeLED(int pwm_Pin): ledObject(pwm_Pin),    // Not 100% sure this is correct syntax, we will see
+      pwmPin(pwm_Pin)                         // Passed pwm_Pin during constructor now.
+    {
+    }
+//#error "Unsupported board selected!"
 #endif
 
 

@@ -84,6 +84,7 @@ void ledObject::toggleLED() {
 
 void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a constant blinking that continues until stopBlink is called
   blinkActive = true;
+  currentBlinkState = RUNNING;
   blinkOnDuration = onDuration;
   blinkOffDuration = offDuration;
 }
@@ -91,11 +92,18 @@ void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a co
 
 void ledObject::stopBlink() {                                                 // Stops the blinking, including if callBlink has been set
   blinkActive = false;
-  ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+  currentBlinkState = STOPPED;
+  if (defaultLEDstate){
+	ledObject::turnOn();   
+  } else {
+	ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+  }
   blinkQuantity = 0;                                                              // Resets to zero, unnecessary but ties up loose ends
 }
 
-
+void ledObject::setDefault(bool defaultState){
+	defaultLEDstate = defaultState;
+}
 
 
 //--------------- Blink Events ------------------------------
@@ -112,6 +120,7 @@ void ledObject::callBlink(int numberofBlinks, long onDuration, long offDuration)
   blinkOffDuration = offDuration;
 
   blinkActive = true;
+  currentBlinkState = RUNNING;
 
 }
 
@@ -122,7 +131,7 @@ void ledObject::callBlink(int numberofBlinks, long onDuration, long offDuration)
 
 void ledObject::performBlink() {     // This function is called once per loop and it performs any blinks that have been set up elsewhere in the program  // Could be passed blink on duration and blink off duration (long blinkOnTime, long blinkOffTime) this might allow changing these values between loops for different effects, but it seems to be over
 
-  if (blinkActive) {                //if blinkOn has been set true
+  if (currentBlinkState == RUNNING) {                //if blinkOn has been set true
 
     currentAction = millis();              // save the current time
 
@@ -138,6 +147,7 @@ void ledObject::performBlink() {     // This function is called once per loop an
           blinkQuantity--;                                                // a blink has been done so decrement the number of blinks left to actuate
           if (blinkQuantity == 0) {                                                // if a blink even has been called but has now been expended
             blinkActive = false;                                                        // stop the blinking (else it will carry on forever)
+			currentBlinkState = STOPPING;
           }
         }
       }
@@ -149,5 +159,16 @@ void ledObject::performBlink() {     // This function is called once per loop an
         //Based on the initial LEDstate?
       }
     }
-  }
+  } else if (currentBlinkState == STOPPING) {    
+		if (currentAction - lastAction >= blinkOnDuration) {   // add additonal timer
+			if (defaultLEDstate){
+				ledObject::turnOn();   
+			} else {
+				ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+			}
+			currentBlinkState = STOPPED;
+		}
+	} else {
+	   // if blink is not active, do nothing
+	}
 }
