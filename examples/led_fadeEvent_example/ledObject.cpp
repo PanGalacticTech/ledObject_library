@@ -91,11 +91,17 @@ void ledObject::startBlink(long onDuration, long offDuration) {   // Starts a co
 
 void ledObject::stopBlink() {                                                 // Stops the blinking, including if callBlink has been set
   blinkActive = false;
-  ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+  if (defaultLEDstate){
+	ledObject::turnOn();   
+  } else {
+	ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+  }
   blinkQuantity = 0;                                                              // Resets to zero, unnecessary but ties up loose ends
 }
 
-
+void ledObject::setDefault(bool defaultState){
+	defaultLEDstate = defaultState;
+}
 
 
 //--------------- Blink Events ------------------------------
@@ -149,5 +155,11 @@ void ledObject::performBlink() {     // This function is called once per loop an
         //Based on the initial LEDstate?
       }
     }
+  } else {   // if blink is not active, go to default state
+	if (defaultLEDstate){
+		ledObject::turnOn();   
+  } else {
+		ledObject::turnOff();                                                            //pulls LED low to stop the blinking
+	}
   }
 }

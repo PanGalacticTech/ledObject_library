@@ -53,6 +53,8 @@ class ledObject
     void startBlink(long onDuration = 40, long offDuration = 130);                                 // default values allow startBlink() with no arguments. // performBlink must be called in main loop to actuate
 
     void stopBlink();                                                                                   // Stops any blink events dead.
+	
+	void setDefault(bool defaultState = false);
 
 
     // Blink Event Methods
@@ -80,6 +82,8 @@ class ledObject
     int blinkQuantity;              // Global Variables used for blink events
     long blinkOnDuration;
     long blinkOffDuration;
+	
+	bool defaultLEDstate = false;
 
 
 
