@@ -160,7 +160,8 @@ void ledObject::performBlink() {     // This function is called once per loop an
       }
     }
   } else if (currentBlinkState == STOPPING) {    
-		if (currentAction - lastAction >= blinkOnDuration) {   // add additonal timer
+		currentAction = millis();              // save the current time
+		if (currentAction - lastAction >= blinkOffDuration) {   // add additonal timer
 			if (defaultLEDstate){
 				ledObject::turnOn();   
 			} else {
